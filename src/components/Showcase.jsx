@@ -13,7 +13,6 @@ const Showcase = () => {
                     start: "top top",
                     end: "bottom top",
                     scrub: true,
-                    pin: true,
                 }
             });
 
