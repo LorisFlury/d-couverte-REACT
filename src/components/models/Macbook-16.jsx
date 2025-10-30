@@ -13,6 +13,7 @@ import { useGLTF, useTexture } from '@react-three/drei'
 import { noChangeParts } from '../../constants';
 import useMacbookStore from '../../store';
 import * as THREE from 'three';
+import gsap from 'gsap';
 
 export default function MacbookModel16(props) {
   const { color } = useMacbookStore();
@@ -21,15 +22,23 @@ export default function MacbookModel16(props) {
   const texture = useTexture('/screen.png');
 
    useEffect(() => {
-    scene.traverse((child) => {
-      if (child.isMesh) {
-        if(!noChangeParts.includes(child.name)){
-        child.material.color = new THREE.Color(color);
-        }
-      }
-    })
-   }, [color]);
+  scene.traverse((child) => {
+    if (child.isMesh && !noChangeParts.includes(child.name)) {
+      const material = child.material;
 
+      
+      const newColor = new THREE.Color(color);
+
+      gsap.to(material.color, {
+        r: newColor.r,
+        g: newColor.g,
+        b: newColor.b,
+        duration: 1.2,           
+        ease: "power2.out",      // effet d'accélération/décélération
+      });
+    }
+  });
+}, [color]);
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.Object_10.geometry} material={materials.PaletteMaterial001} rotation={[Math.PI / 2, 0, 0]} />

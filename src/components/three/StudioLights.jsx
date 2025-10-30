@@ -39,6 +39,11 @@ const StudioLights = () => {
                 decay = {0.1}
                 intensity = {Math.PI * 1}
             />
+            <directionalLight
+                position={[0, 4, 3]}
+                intensity={1}
+        
+                />
         </group>
     )
 }
