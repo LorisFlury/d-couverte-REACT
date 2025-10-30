@@ -11,13 +11,14 @@ const Showcase = () => {
                 scrollTrigger: {
                     trigger: "#showcase",
                     start: "top top",
-                    end: "+=300",
+                    end: "bottom bottom",
                     scrub: true,
+                    pin: true,
                 }
             });
 
             timeline.to('.mask img', {
-                transform: 'scale(1.15)'
+                transform: 'scale(1)'
             }).to('.content', {opacity: 1, y: 0, ease: 'power1.in'})
         } else {
             gsap.set('.content', {opacity: 1, y: 0});
